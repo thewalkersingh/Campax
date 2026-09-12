@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: ${DB_URL}                      # Set in Koyeb/Render Environment
+    username: ${DB_USERNAME}            # Set in Koyeb/Render Environment
+    password: ${DB_PASSWORD}            # Set in Koyeb/Render Environment
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: validate                # Let Flyway manage schema in prod
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+server:
+  port: ${PORT:8080}                    # Render/Koyeb assign a dynamic PORT
+logging:
+  level:
+    root: INFO
+    com.schoolnest: DEBUG

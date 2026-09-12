@@ -1,0 +1,155 @@
+campax-server/
+├── pom.xml
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── campax/
+│   │   │           └── campaxserver/
+│   │   │               ├── CampaxServerApplication.java
+│   │   │               ├── config/
+│   │   │               │   ├── CorsConfig.java          (Already given)
+│   │   │               │   └── WebConfig.java           (Already given)
+│   │   │               ├── context/
+│   │   │               │   └── TenantContext.java       (Already given)
+│   │   │               ├── interceptor/
+│   │   │               │   └── TenantInterceptor.java   (Already given)
+│   │   │               ├── model/                       (Entities given)
+│   │   │               │   ├── School.java
+│   │   │               │   ├── AcademicYear.java
+│   │   │               │   ├── Class.java
+│   │   │               │   └── Student.java
+│   │   │               ├── repository/                  ⬅️ [MISSING - PROVIDING NOW]
+│   │   │               │   ├── SchoolRepository.java
+│   │   │               │   ├── AcademicYearRepository.java
+│   │   │               │   ├── ClassRepository.java
+│   │   │               │   └── StudentRepository.java   (Already given, but I'll recap)
+│   │   │               ├── dto/
+│   │   │               │   ├── request/
+│   │   │               │   │   └── StudentRequestDTO.java (Given)
+│   │   │               │   └── response/
+│   │   │               │       └── StudentResponseDTO.java (Given)
+│   │   │               ├── mapper/
+│   │   │               │   └── StudentMapper.java       (Given)
+│   │   │               ├── service/
+│   │   │               │   ├── StudentService.java      (Given)
+│   │   │               │   └── impl/
+│   │   │               │       └── StudentServiceImpl.java (Given)
+│   │   │               ├── controller/
+│   │   │               │   └── StudentController.java   (Given)
+│   │   │               └── exception/
+│   │   │                   └── GlobalExceptionHandler.java (Given)
+│   │   └── resources/
+│   │       ├── application.yml
+│   │       ├── application-dev.yml
+│   │       └── db/migration/       (Flyway - optional for later)
+│   └── test/
+└── docker-compose.yml (if needed later)
+
+====================================================== For Future reference =================================
+school-management-backend/
+├── src/
+│   ├── main/
+│   │   ├── java/com/schoolmanagement/
+│   │   │   ├── SchoolManagementApplication.java
+│   │   │   ├── config/
+│   │   │   │   ├── SecurityConfig.java           # JWT + Role-based security
+│   │   │   │   ├── RedisConfig.java              # Redis cache configuration
+│   │   │   │   ├── WebConfig.java                # CORS, interceptors
+│   │   │   │   └── SwaggerConfig.java            # API documentation
+│   │   │   ├── model/
+│   │   │   │   ├── School.java
+│   │   │   │   ├── AcademicYear.java
+│   │   │   │   ├── Class.java                    # Represents grade + section
+│   │   │   │   ├── Student.java
+│   │   │   │   ├── Teacher.java
+│   │   │   │   ├── Subject.java
+│   │   │   │   ├── ClassSubjectMapping.java      # Teacher assigned to subject in class
+│   │   │   │   ├── TimeTable.java
+│   │   │   │   ├── Attendance.java
+│   │   │   │   ├── InternalAssessment.java       # FA-1, FA-2 etc.
+│   │   │   │   ├── WrittenExam.java              # SA-1, Annual etc.
+│   │   │   │   ├── StudentMarks.java             # CGPA calculation
+│   │   │   │   ├── FeeStructure.java
+│   │   │   │   ├── FeeTransaction.java
+│   │   │   │   ├── Parent.java
+│   │   │   │   ├── StudentParent.java            # Many-to-many mapping
+│   │   │   │   ├── User.java                     # Base class for login
+│   │   │   │   └── enums/
+│   │   │   │       ├── Role.java                 # ADMIN, TEACHER, PARENT, ACCOUNTANT
+│   │   │   │       ├── AttendanceStatus.java     # PRESENT, ABSENT, HALF_DAY
+│   │   │   │       ├── FeeStatus.java            # PAID, PENDING, OVERDUE
+│   │   │   │       └── Grade.java                # A1, A2, B1... with grade points
+│   │   │   ├── repository/                       # Spring Data JPA Repositories
+│   │   │   │   ├── SchoolRepository.java
+│   │   │   │   ├── StudentRepository.java
+│   │   │   │   ├── TeacherRepository.java
+│   │   │   │   ├── AttendanceRepository.java
+│   │   │   │   ├── MarksRepository.java
+│   │   │   │   ├── FeeTransactionRepository.java
+│   │   │   │   └── ParentRepository.java
+│   │   │   ├── service/
+│   │   │   │   ├── impl/
+│   │   │   │   │   ├── SchoolServiceImpl.java
+│   │   │   │   │   ├── StudentServiceImpl.java
+│   │   │   │   │   ├── AttendanceServiceImpl.java
+│   │   │   │   │   ├── GradeCalculationServiceImpl.java  # 20% Internal + 80% Written
+│   │   │   │   │   ├── TimetableServiceImpl.java         # Conflict detection
+│   │   │   │   │   ├── FeeServiceImpl.java
+│   │   │   │   │   ├── PromotionServiceImpl.java         # 10th→11th or pass out
+│   │   │   │   │   └── NotificationServiceImpl.java      # SMS/Email
+│   │   │   │   ├── interfaces/
+│   │   │   │   │   ├── SchoolService.java
+│   │   │   │   │   ├── StudentService.java
+│   │   │   │   │   └── ... (interfaces)
+│   │   │   │   └── dto/                         # Data Transfer Objects
+│   │   │   │       ├── request/
+│   │   │   │       │   ├── StudentRequestDTO.java
+│   │   │   │       │   ├── BulkAttendanceDTO.java
+│   │   │   │       │   └── FeePaymentDTO.java
+│   │   │   │       └── response/
+│   │   │   │           ├── StudentResponseDTO.java
+│   │   │   │           ├── GradeCardDTO.java
+│   │   │   │           └── FeeReceiptDTO.java
+│   │   │   ├── controller/                      # REST Controllers
+│   │   │   │   ├── AuthController.java
+│   │   │   │   ├── StudentController.java
+│   │   │   │   ├── AttendanceController.java
+│   │   │   │   ├── ExamController.java
+│   │   │   │   ├── FeeController.java
+│   │   │   │   ├── TimetableController.java
+│   │   │   │   └── ParentController.java
+│   │   │   ├── security/
+│   │   │   │   ├── JwtAuthenticationFilter.java
+│   │   │   │   ├── JwtTokenProvider.java
+│   │   │   │   ├── CustomUserDetailsService.java
+│   │   │   │   └── SecurityConstants.java
+│   │   │   ├── exception/                      # Global exception handling
+│   │   │   │   ├── ResourceNotFoundException.java
+│   │   │   │   ├── TeacherConflictException.java
+│   │   │   │   ├── FeeOverdueException.java
+│   │   │   │   └── GlobalExceptionHandler.java
+│   │   │   ├── scheduler/                      # Quartz Scheduler for background jobs
+│   │   │   │   ├── FeeReminderScheduler.java
+│   │   │   │   └── ReportCardGeneratorScheduler.java
+│   │   │   ├── util/
+│   │   │   │   ├── GradeCalculator.java        # CGPA logic
+│   │   │   │   ├── PDFGenerator.java           # Report cards using iText/OpenPDF
+│   │   │   │   └── ExcelExporter.java          # Export data
+│   │   │   └── cache/                         # Redis cache operations
+│   │   │       ├── TimetableCacheManager.java
+│   │   │       └── StudentCacheManager.java
+│   │   └── resources/
+│   │       ├── application.yml                # Configuration
+│   │       ├── application-dev.yml
+│   │       ├── application-prod.yml
+│   │       └── db/migration/                  # Flyway/Liquibase scripts
+│   │           ├── V1__create_school_tables.sql
+│   │           ├── V2__create_student_tables.sql
+│   │           └── V3__create_fee_tables.sql
+│   └── test/
+│       └── java/com/schoolmanagement/
+│           ├── unit/
+│           └── integration/
+├── pom.xml                                    # Maven dependencies
+└── docker-compose.yml                         # MySQL + Redis + Spring Boot

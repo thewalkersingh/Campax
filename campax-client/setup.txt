@@ -1,0 +1,59 @@
+campax-client/
+├── index.html
+├── package.json
+├── vite.config.js
+├── src/
+│   ├── main.jsx
+│   ├── App.jsx
+│   ├── redux/
+│   │   ├── store.js                (Given)
+│   │   └── api/
+│   │       └── studentApi.js       (Given)
+│   ├── pages/                      ⬅️ [To be added in next step]
+│   │   ├── StudentList.jsx
+│   │   └── CreateStudent.jsx
+│   └── components/                 (Optional - common UI)
+└── public/
+
+school-management-frontend/
+├── src/
+│   ├── app/
+│   │   ├── store.js                    # Redux store configuration
+│   │   └── hooks.js                    # Typed hooks (useAppDispatch, useAppSelector)
+│   ├── features/
+│   │   ├── auth/
+│   │   │   ├── authSlice.js
+│   │   │   ├── authAPI.js              # RTK Query endpoints
+│   │   │   └── Login.jsx
+│   │   ├── students/
+│   │   │   ├── studentSlice.js
+│   │   │   ├── studentAPI.js
+│   │   │   └── StudentList.jsx
+│   │   ├── attendance/
+│   │   │   ├── attendanceSlice.js
+│   │   │   ├── attendanceAPI.js
+│   │   │   └── MarkAttendance.jsx      # Bulk attendance UI
+│   │   ├── exams/
+│   │   │   ├── examSlice.js
+│   │   │   ├── examAPI.js
+│   │   │   └── GradeCard.jsx           # Display CGPA
+│   │   ├── fees/
+│   │   │   ├── feeSlice.js
+│   │   │   ├── feeAPI.js
+│   │   │   └── FeeDashboard.jsx        # Payment history
+│   │   └── parents/
+│   │       ├── parentSlice.js
+│   │       ├── parentAPI.js
+│   │       └── ParentPortal.jsx
+│   ├── components/
+│   │   ├── common/
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── Sidebar.jsx
+│   │   │   └── ProtectedRoute.jsx      # Role-based routing
+│   │   └── ui/                         # ShadCN or Material-UI components
+│   ├── utils/
+│   │   ├── apiClient.js                # Axios interceptor for JWT
+│   │   └── constants.js
+│   └── App.jsx
+├── package.json
+└── tailwind.config.js
